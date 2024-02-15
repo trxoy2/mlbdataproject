@@ -6,7 +6,7 @@ from datetime import datetime
 from mlbapi import  player_lookup
 
 default_args = {
-    'owner': 'airflow',
+    'owner': 'troy',
     'depends_on_past': False,
     'start_date': datetime(2024, 2, 15),
     'email': ['airflow@example.com'],
