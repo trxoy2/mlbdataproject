@@ -3,7 +3,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.utils.dates import days_ago
 from datetime import datetime
-from mlbapi import  player_lookup
+from mlbapi import player_lookup
 
 default_args = {
     'owner': 'troy',
