@@ -11,7 +11,7 @@ create user - airflow users create -u airflow -f airflow -l airflow -r Admin -e 
 docker-compose up airflow-init
 docker-compose up -d
 
-docker compose -f prod-docker-compose.yaml up -d
+docker-compose -f prod-docker-compose.yaml up -d
 
 docker-compose down -v
 
