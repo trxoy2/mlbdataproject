@@ -14,7 +14,7 @@ default_args = {
     'email_on_retry': False,
     'retries': 1,
     'retry_delay': timedelta(minutes=1),
-    'schedule_interval': 'none',
+    'schedule_interval': 'None',
 }
 
 with DAG(
