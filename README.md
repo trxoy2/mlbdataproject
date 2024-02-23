@@ -19,5 +19,7 @@ show constainers health: docker ps
 
 docker build . --tag extending_airflow:latest
 
+fix permissions on aws: sudo chown -R $USER:$USER .
+
 https://github.com/mikestack15/orangutan-stem/wiki/Activity-1:-Open-Weather-Map-API-Data-Pipeline
 
