@@ -25,7 +25,6 @@ with DAG(
     get_playerdata = PythonOperator(
         task_id='player_lookup',
         python_callable=player_lookup,
-        schedule_interval=None
     )
 
 get_playerdata
