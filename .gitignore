@@ -1,4 +1,3 @@
 airflowvenv/*
-airflowdocker/*
-
+airflowdocker/logs/*
 !.gitignore
