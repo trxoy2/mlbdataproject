@@ -24,3 +24,5 @@ docker-compose down -v
 docker ps
 
 docker build . --tag extending_airflow:latest
+
+https://github.com/mikestack15/orangutan-stem/wiki/Activity-1:-Open-Weather-Map-API-Data-Pipeline
