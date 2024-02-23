@@ -19,6 +19,7 @@ def player_lookup():
     
     bravesStats['events'].fillna('blank', inplace=True)
     bravesStats = bravesStats.loc[bravesStats['events'] != 'blank']
+    print(bravesStats)
 
     return bravesStats
 

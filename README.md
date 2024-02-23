@@ -26,3 +26,5 @@ docker ps
 docker build . --tag extending_airflow:latest
 
 https://github.com/mikestack15/orangutan-stem/wiki/Activity-1:-Open-Weather-Map-API-Data-Pipeline
+
+http://ec2-3-141-19-82.us-east-2.compute.amazonaws.com:8080/
