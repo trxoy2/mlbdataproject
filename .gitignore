@@ -1,3 +1,4 @@
 airflowvenv/*
 airflowdocker/logs/*
+airflowdocker/dags/__pycache__/*
 !.gitignore
