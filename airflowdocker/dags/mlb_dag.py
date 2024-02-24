@@ -1,14 +1,14 @@
 from datetime import timedelta
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
+from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.utils.dates import days_ago
 from datetime import datetime
-from mlbapi import player_lookup
+from mlbapi import player_lookup, upload_bravesStats
 
 default_args = {
     'owner': 'troy',
     'depends_on_past': False,
-    'start_date': datetime(2024, 2, 15),
     'email': ['airflow@example.com'],
     'email_on_failure': False,
     'email_on_retry': False,
@@ -27,4 +27,11 @@ with DAG(
         python_callable=player_lookup,
     )
 
-get_playerdata
+    # Task to upload DataFrame to S3
+    upload_bravesStats = PythonOperator(
+        task_id='upload_bravesStats',
+        python_callable=upload_bravesStats,
+        provide_context=True,
+    )
+
+get_playerdata >> upload_bravesStats
