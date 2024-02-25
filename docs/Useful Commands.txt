@@ -1,0 +1,29 @@
+﻿Useful commands:
+
+
+Initialize airflow db (only used when setting up first time):
+docker-compose up airflow-init
+
+
+Spin up airflow:
+docker-compose up -d
+
+
+Spin up airflow in aws: 
+docker-compose -f prod-docker-compose.yaml up -d
+
+
+Shut down airflow:
+docker-compose down -v
+
+
+show containers health: 
+docker ps
+
+
+Build docker container using Dockerfile with requirements:
+docker build . --tag extending_airflow:latest
+
+
+fix permissions on aws:
+ sudo chown -R $USER:$USER .
