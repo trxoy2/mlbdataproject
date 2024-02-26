@@ -3,7 +3,8 @@ from datetime import datetime
 from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.utils.dates import days_ago
-from mlbapi import player_lookup, upload_bravesStats, transform_bravesStats
+from airflow.utils.task_group import TaskGroup
+from mlbapi import lookup_ozzie, lookup_ronald, lookup_olson, lookup_riley, combine_players, upload_bravesStats, transform_bravesStats
 
 default_args = {
     'owner': 'troy',
@@ -21,9 +22,30 @@ with DAG(
     dag_id='mlb_dag',
 ) as dag:
     
-    get_playerdata = PythonOperator(
-        task_id='player_lookup',
-        python_callable=player_lookup,
+    with TaskGroup('collect_players') as collect_players:
+        lookup_ozzie = PythonOperator(
+        task_id='lookup_ozzie',
+        python_callable=lookup_ozzie,
+        )
+
+        lookup_ronald = PythonOperator(
+        task_id='lookup_ronald',
+        python_callable=lookup_ronald,
+        )
+
+        lookup_olson = PythonOperator(
+        task_id='lookup_olson',
+        python_callable=lookup_olson,
+        )
+
+        lookup_riley = PythonOperator(
+        task_id='lookup_riley',
+        python_callable=lookup_riley,
+        )
+
+    combine_players = PythonOperator(
+        task_id='combine_players',
+        python_callable=combine_players,
     )
 
     transform_bravesStats = PythonOperator(
@@ -37,4 +59,4 @@ with DAG(
         provide_context=True,
     )
 
-get_playerdata >> transform_bravesStats >> upload_bravesStats
+collect_players >> combine_players >> transform_bravesStats >> upload_bravesStats
