@@ -4,7 +4,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.utils.dates import days_ago
 from airflow.utils.task_group import TaskGroup
-from mlbapi import lookup_ozzie, lookup_ronald, lookup_olson, lookup_riley, combine_players, upload_bravesStats, transform_bravesStats
+from mlbapi import lookup_ozzie, lookup_ronald, lookup_olson, lookup_riley, lookup_ozuna, lookup_harris, lookup_murphy, lookup_kelenic, lookup_arcia, combine_players, upload_bravesStats, transform_bravesStats
 
 default_args = {
     'owner': 'troy',
@@ -41,6 +41,31 @@ with DAG(
         lookup_riley = PythonOperator(
         task_id='lookup_riley',
         python_callable=lookup_riley,
+        )
+
+        lookup_ozuna = PythonOperator(
+        task_id='lookup_ozuna',
+        python_callable=lookup_ozuna,
+        )
+
+        lookup_harris = PythonOperator(
+        task_id='lookup_harris',
+        python_callable=lookup_harris,
+        )
+
+        lookup_murphy = PythonOperator(
+        task_id='lookup_murphy',
+        python_callable=lookup_murphy,
+        )
+
+        lookup_kelenic = PythonOperator(
+        task_id='lookup_kelenic',
+        python_callable=lookup_kelenic,
+        )
+
+        lookup_arcia = PythonOperator(
+        task_id='lookup_arcia',
+        python_callable=lookup_arcia,
         )
 
     combine_players = PythonOperator(

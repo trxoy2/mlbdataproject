@@ -44,6 +44,61 @@ def lookup_riley(ti):
     #return bravesStats
     ti.xcom_push(key='austinrileyStats', value=austinrileyStats)
 
+def lookup_ozuna(ti):
+    from pybaseball import  playerid_lookup
+    from pybaseball import  statcast_batter
+
+    marcellozunaID = playerid_lookup('ozuna', 'marcell')
+
+    marcellozunaStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(marcellozunaID['key_mlbam'].values[0]))
+
+    #return bravesStats
+    ti.xcom_push(key='marcellozunaStats', value=marcellozunaStats)
+
+def lookup_harris(ti):
+    from pybaseball import  playerid_lookup
+    from pybaseball import  statcast_batter
+
+    michaelharrisID = playerid_lookup('harris', 'michael')
+
+    michaelharrisStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(michaelharrisID['key_mlbam'].values[0]))
+
+    #return bravesStats
+    ti.xcom_push(key='michaelharrisStats', value=michaelharrisStats)
+
+def lookup_murphy(ti):
+    from pybaseball import  playerid_lookup
+    from pybaseball import  statcast_batter
+
+    seanmurphyID = playerid_lookup('murphy', 'sean')
+
+    seanmurphyStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(seanmurphyID['key_mlbam'].values[0]))
+
+    #return bravesStats
+    ti.xcom_push(key='seanmurphyStats', value=seanmurphyStats)
+
+def lookup_kelenic(ti):
+    from pybaseball import  playerid_lookup
+    from pybaseball import  statcast_batter
+
+    jarredkelenicID = playerid_lookup('kelenic', 'jarred')
+
+    jarredkelenicStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(jarredkelenicID['key_mlbam'].values[0]))
+
+    #return bravesStats
+    ti.xcom_push(key='jarredkelenicStats', value=jarredkelenicStats)
+
+def lookup_arcia(ti):
+    from pybaseball import  playerid_lookup
+    from pybaseball import  statcast_batter
+
+    orlandoarciaID = playerid_lookup('arcia', 'orlando')
+
+    orlandoarciaStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(orlandoarciaID['key_mlbam'].values[0]))
+
+    #return bravesStats
+    ti.xcom_push(key='orlandoarciaStats', value=orlandoarciaStats)
+
 def combine_players(ti):
     import pandas as pd
 
@@ -51,8 +106,13 @@ def combine_players(ti):
     ronaldacunaStats = ti.xcom_pull(task_ids='collect_players.lookup_ronald', key='ronaldacunaStats')
     mattolsonStats = ti.xcom_pull(task_ids='collect_players.lookup_olson', key='mattolsonStats')
     austinrileyStats = ti.xcom_pull(task_ids='collect_players.lookup_riley', key='austinrileyStats')
+    marcellozunaStats = ti.xcom_pull(task_ids='collect_players.lookup_ozuna', key='marcellozunaStats')
+    michaelharrisStats = ti.xcom_pull(task_ids='collect_players.lookup_harris', key='michaelharrisStats')
+    seanmurphyStats = ti.xcom_pull(task_ids='collect_players.lookup_murphy', key='seanmurphyStats')
+    jarredkelenicStats = ti.xcom_pull(task_ids='collect_players.lookup_kelenic', key='jarredkelenicStats')
+    orlandoarciaStats = ti.xcom_pull(task_ids='collect_players.lookup_kelenic', key='orlandoarciaStats')
 
-    bravesStats = pd.concat([ozziealbiesStats, ronaldacunaStats, mattolsonStats, austinrileyStats], ignore_index=True)
+    bravesStats = pd.concat([ronaldacunaStats, ozziealbiesStats, mattolsonStats, austinrileyStats, marcellozunaStats, seanmurphyStats, jarredkelenicStats, orlandoarciaStats, michaelharrisStats], ignore_index=True)
     
     print(bravesStats)
 
@@ -91,7 +151,7 @@ def upload_bravesStats(ti):
     bravesStats_df.to_csv(filename, index=False)
 
     # Initialize S3Hook
-    s3_hook = S3Hook(aws_conn_id='s3bucket')
+    s3_hook = S3Hook(aws_conn_id='BUCKET')
 
     # Upload the CSV data to the specified S3 bucket and object (file) name
     s3_hook.load_file(
