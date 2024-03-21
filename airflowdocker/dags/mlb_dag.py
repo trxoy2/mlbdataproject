@@ -4,7 +4,7 @@ from airflow import DAG
 from airflow.operators.python_operator import PythonOperator
 from airflow.utils.dates import days_ago
 from airflow.utils.task_group import TaskGroup
-from mlbapi import lookup_ozzie, lookup_ronald, lookup_olson, lookup_riley, lookup_ozuna, lookup_harris, lookup_murphy, lookup_kelenic, lookup_arcia, combine_players, download_pitchdata, rename_pitchdata, upload_bravesStats, transform_bravesStats
+from mlbapi import lookup_ozzie, lookup_ronald, lookup_olson, lookup_riley, lookup_ozuna, lookup_harris, lookup_murphy, lookup_kelenic, lookup_arcia, combine_players, download_s3data, upload_bravesStats, transform_bravesStats
 
 default_args = {
     'owner': 'troy',
@@ -73,14 +73,9 @@ with DAG(
         python_callable=combine_players,
     )
 
-    download_pitchdata = PythonOperator(
-        task_id='download_pitchdata',
-        python_callable=download_pitchdata,
-    )
-
-    rename_pitchdata = PythonOperator(
-        task_id='rename_pitchdata',
-        python_callable=rename_pitchdata,
+    download_s3data = PythonOperator(
+        task_id='download_s3data',
+        python_callable=download_s3data,
     )
 
     transform_bravesStats = PythonOperator(
@@ -94,4 +89,4 @@ with DAG(
         provide_context=True,
     )
 
-collect_players >> combine_players >> download_pitchdata >> rename_pitchdata >> transform_bravesStats >> upload_bravesStats
+collect_players >> combine_players >> download_s3data >> transform_bravesStats >> upload_bravesStats

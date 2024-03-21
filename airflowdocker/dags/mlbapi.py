@@ -9,7 +9,7 @@ def lookup_ozzie(ti):
 
     ozziealbiesID = playerid_lookup('albies', 'ozzie')
 
-    ozziealbiesStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(ozziealbiesID['key_mlbam'].values[0]))
+    ozziealbiesStats = statcast_batter('2023-07-04', '2023-07-04', player_id = int(ozziealbiesID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='ozziealbiesStats', value=ozziealbiesStats)
@@ -23,7 +23,7 @@ def lookup_ronald(ti):
 
     ronaldacunaID = playerid_lookup('acuña', 'ronald')
 
-    ronaldacunaStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(ronaldacunaID['key_mlbam'].values[0]))
+    ronaldacunaStats = statcast_batter('2023-07-04', '2023-07-04', player_id = int(ronaldacunaID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='ronaldacunaStats', value=ronaldacunaStats)
@@ -37,7 +37,7 @@ def lookup_olson(ti):
 
     mattolsonID = playerid_lookup('olson', 'matt')
 
-    mattolsonStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(mattolsonID['key_mlbam'].values[0]))
+    mattolsonStats = statcast_batter('2023-07-04', '2023-07-04', player_id = int(mattolsonID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='mattolsonStats', value=mattolsonStats)
@@ -51,7 +51,7 @@ def lookup_riley(ti):
 
     austinrileyID = playerid_lookup('riley', 'austin')
 
-    austinrileyStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(austinrileyID['key_mlbam'].values[0]))
+    austinrileyStats = statcast_batter('2023-07-04', '2023-07-04', player_id = int(austinrileyID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='austinrileyStats', value=austinrileyStats)
@@ -65,7 +65,7 @@ def lookup_ozuna(ti):
 
     marcellozunaID = playerid_lookup('ozuna', 'marcell')
 
-    marcellozunaStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(marcellozunaID['key_mlbam'].values[0]))
+    marcellozunaStats = statcast_batter('2023-07-04', '2023-07-04', player_id = int(marcellozunaID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='marcellozunaStats', value=marcellozunaStats)
@@ -79,7 +79,7 @@ def lookup_harris(ti):
 
     michaelharrisID = playerid_lookup('harris', 'michael')
 
-    michaelharrisStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(michaelharrisID['key_mlbam'].values[0]))
+    michaelharrisStats = statcast_batter('2023-07-04', '2023-07-04', player_id = int(michaelharrisID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='michaelharrisStats', value=michaelharrisStats)
@@ -93,7 +93,7 @@ def lookup_murphy(ti):
 
     seanmurphyID = playerid_lookup('murphy', 'sean')
 
-    seanmurphyStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(seanmurphyID['key_mlbam'].values[0]))
+    seanmurphyStats = statcast_batter('2023-07-04', '2023-07-04', player_id = int(seanmurphyID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='seanmurphyStats', value=seanmurphyStats)
@@ -107,7 +107,7 @@ def lookup_kelenic(ti):
 
     jarredkelenicID = playerid_lookup('kelenic', 'jarred')
 
-    jarredkelenicStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(jarredkelenicID['key_mlbam'].values[0]))
+    jarredkelenicStats = statcast_batter('2023-07-04', '2023-07-04', player_id = int(jarredkelenicID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='jarredkelenicStats', value=jarredkelenicStats)
@@ -121,7 +121,7 @@ def lookup_arcia(ti):
 
     orlandoarciaID = playerid_lookup('arcia', 'orlando')
 
-    orlandoarciaStats = statcast_batter('2023-07-01', '2023-07-01', player_id = int(orlandoarciaID['key_mlbam'].values[0]))
+    orlandoarciaStats = statcast_batter('2023-07-04', '2023-07-04', player_id = int(orlandoarciaID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='orlandoarciaStats', value=orlandoarciaStats)
@@ -139,53 +139,53 @@ def combine_players(ti):
     jarredkelenicStats = ti.xcom_pull(task_ids='collect_players.lookup_kelenic', key='jarredkelenicStats')
     orlandoarciaStats = ti.xcom_pull(task_ids='collect_players.lookup_kelenic', key='orlandoarciaStats')
 
-    bravesStats = pd.concat([ronaldacunaStats, ozziealbiesStats, mattolsonStats, austinrileyStats, marcellozunaStats, seanmurphyStats, jarredkelenicStats, orlandoarciaStats, michaelharrisStats], ignore_index=True)
+    BravesPitchDataToday_df = pd.concat([ronaldacunaStats, ozziealbiesStats, mattolsonStats, austinrileyStats, marcellozunaStats, seanmurphyStats, jarredkelenicStats, orlandoarciaStats, michaelharrisStats], ignore_index=True)
 
-    bravesStats['events'].fillna('blank', inplace=True)
-    bravesStats = bravesStats.loc[bravesStats['events'] != 'blank']
-    print(f"Type of data: {type(bravesStats)}")
+    BravesPitchDataToday_df['events'].fillna('blank', inplace=True)
+    BravesPitchDataToday_df = BravesPitchDataToday_df.loc[BravesPitchDataToday_df['events'] != 'blank']
+    print(f"Type of data: {type(BravesPitchDataToday_df)}")
 
     #return bravesStats
-    ti.xcom_push(key='bravesStats', value=bravesStats)
+    ti.xcom_push(key='BravesPitchDataToday_df', value=BravesPitchDataToday_df)
 
 
-def download_pitchdata():
+def download_s3data(ti):
     import pandas as pd
+    import os
     from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 
     # Initialize S3Hook
     s3_hook = S3Hook(aws_conn_id='BUCKET')
 
     local_file_path='/opt/airflow/data'
-    filename = 'BravesPitchData.csv'
+    filename1 = 'BravesPitchData.csv'
+    filename2 = 'BravesSummarizedData.csv'
 
     #download CSV from S3
-    s3filename = s3_hook.download_file(
+    PitchDatafilename = s3_hook.download_file(
         bucket_name='mlbdata1',
-        key=filename,
+        key=filename1,
         local_path =local_file_path,
     )
 
-    return s3filename
+    SummarizedDatafilename = s3_hook.download_file(
+        bucket_name='mlbdata1',
+        key=filename2,
+        local_path =local_file_path,
+    )
 
+    #rename file
+    newPitchDatafilename = '/opt/airflow/data/BravesPitchData.csv'
+    newSummarizedDatafilename = '/opt/airflow/data/BravesSummarizedData.csv'
+    os.rename(PitchDatafilename, newPitchDatafilename)
+    os.rename(SummarizedDatafilename, newSummarizedDatafilename)
 
-def rename_pitchdata(ti):
-    import pandas as pd
-    import os
-    from airflow.providers.amazon.aws.hooks.s3 import S3Hook
-
-    filename = 'BravesPitchData.csv'
-    newfilename = '/opt/airflow/data/BravesPitchData.csv'
-
-    downloadedfilename = ti.xcom_pull(task_ids='download_pitchdata')
-    print(downloadedfilename)
-    #downloadedfilepath = '/'.join(downloadedfilename[0].split('/')[:-1])
-    #print(downloadedfilepath)
-    os.rename(downloadedfilename, newfilename)
-
-    BravesPitchDataOld_df = pd.read_csv(newfilename)
+    BravesPitchDataOld_df = pd.read_csv(newPitchDatafilename)
+    BravesSummarizedDataOld_df = pd.read_csv(newSummarizedDatafilename)
 
     ti.xcom_push(key='BravesPitchDataOld_df', value=BravesPitchDataOld_df)
+    ti.xcom_push(key='BravesPitchDataOld_df', value=BravesSummarizedDataOld_df)
+
 
 
 
@@ -193,46 +193,57 @@ def transform_bravesStats(ti):
     import pandas as pd
     from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 
-    BravesPitchDataOld_df = ti.xcom_pull(task_ids='rename_pitchdata', key='BravesPitchDataOld_df')
-    BravesPitchDataNew_df = ti.xcom_pull(task_ids='combine_players', key='bravesStats')
+    BravesPitchDataOld_df = ti.xcom_pull(task_ids='download_s3data', key='BravesPitchDataOld_df')
+    BravesSummarizedDataOld_df = ti.xcom_pull(task_ids='download_s3data', key='BravesSummarizedDataOld_df')
+    BravesPitchDataToday_df = ti.xcom_pull(task_ids='combine_players', key='BravesPitchDataToday_df')
+    
 
-    filename = 'BravesPitchData.csv'
-
-    BravesPitchDataNew_df = pd.concat([BravesPitchDataOld_df, BravesPitchDataNew_df], ignore_index=True)
-    print(BravesPitchDataNew_df)
-    BravesPitchDataNew_df.to_csv(filename, index=False)
+    BravesPitchDataNew_df = pd.concat([BravesPitchDataOld_df, BravesPitchDataToday_df], ignore_index=True)
 
     #transform data
-    #transformbravesStats_df = pd.read_csv('bravesStats20240224.csv')
-    BravesSummarizedData_df = BravesPitchDataNew_df.loc[BravesPitchDataNew_df['events'] == 'home_run']
+    #BravesPitchDataToday_df = pd.read_csv('../data/BravesPitchData.csv')
+    BravesSummarizedDataToday_df = BravesPitchDataToday_df.loc[BravesPitchDataToday_df['events'] == 'home_run']
+    # Resetting the index
+    BravesSummarizedDataToday_df.reset_index(drop=True, inplace=True)
+
+    BravesSummarizedDataNew_df = pd.concat([BravesSummarizedDataOld_df, BravesSummarizedDataToday_df], ignore_index=True)
 
 
-    print(BravesSummarizedData_df)
+    print(BravesPitchDataNew_df)
 
-    ti.xcom_push(key='BravesSummarizedData_df', value=BravesSummarizedData_df)
+    ti.xcom_push(key='BravesSummarizedDataNew_df', value=BravesSummarizedDataNew_df)
+    ti.xcom_push(key='BravesPitchDataNew_df', value=BravesPitchDataNew_df)
 
 
 
 def upload_bravesStats(ti):
     from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 
-    BravesSummarizedData_df = ti.xcom_pull(task_ids='transform_bravesStats', key='BravesSummarizedData_df')
+    BravesSummarizedDataNew_df = ti.xcom_pull(task_ids='transform_bravesStats', key='BravesSummarizedDataNew_df')
+    BravesPitchDataNew_df = ti.xcom_pull(task_ids='transform_bravesStats', key='BravesPitchDataNew_df')
 
-    print(BravesSummarizedData_df)
-
-    filename = 'BravesSummarizedData.csv'
+    filename1 = 'BravesSummarizedData.csv'
+    filename2 = 'BravesPitchData.csv'
     # Convert DataFrame to CSV string
-    BravesSummarizedData_df.to_csv(filename, index=False)
+    BravesSummarizedDataNew_df.to_csv(filename1, index=False)
+    BravesPitchDataNew_df.to_csv(filename2, index=False)
 
     # Initialize S3Hook
     s3_hook = S3Hook(aws_conn_id='BUCKET')
 
     # Upload the CSV data to the specified S3 bucket and object (file) name
     s3_hook.load_file(
-        filename =filename,
-        key=filename,
+        filename =filename1,
+        key=filename1,
         bucket_name='mlbdata1',
         replace=True,
     )
 
-    return f'Successfully saved CSV to S3:mlbdata1/{filename}'
+    s3_hook.load_file(
+        filename =filename2,
+        key=filename2,
+        bucket_name='mlbdata1',
+        replace=True,
+    )
+
+    return f'Successfully saved CSV to S3:mlbdata1'
