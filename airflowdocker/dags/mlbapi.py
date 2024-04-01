@@ -9,7 +9,7 @@ def lookup_ozzie(ti):
 
     ozziealbiesID = playerid_lookup('albies', 'ozzie')
 
-    ozziealbiesStats = statcast_batter('2024-03-29', '2024-03-29', player_id = int(ozziealbiesID['key_mlbam'].values[0]))
+    ozziealbiesStats = statcast_batter('2024-03-31', '2024-03-31', player_id = int(ozziealbiesID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='ozziealbiesStats', value=ozziealbiesStats)
@@ -23,7 +23,7 @@ def lookup_ronald(ti):
 
     ronaldacunaID = playerid_lookup('acuña', 'ronald')
 
-    ronaldacunaStats = statcast_batter('2024-03-29', '2024-03-29', player_id = int(ronaldacunaID['key_mlbam'].values[0]))
+    ronaldacunaStats = statcast_batter('2024-03-31', '2024-03-31', player_id = int(ronaldacunaID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='ronaldacunaStats', value=ronaldacunaStats)
@@ -37,7 +37,7 @@ def lookup_olson(ti):
 
     mattolsonID = playerid_lookup('olson', 'matt')
 
-    mattolsonStats = statcast_batter('2024-03-29', '2024-03-29', player_id = int(mattolsonID['key_mlbam'].values[0]))
+    mattolsonStats = statcast_batter('2024-03-31', '2024-03-31', player_id = int(mattolsonID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='mattolsonStats', value=mattolsonStats)
@@ -51,7 +51,7 @@ def lookup_riley(ti):
 
     austinrileyID = playerid_lookup('riley', 'austin')
 
-    austinrileyStats = statcast_batter('2024-03-29', '2024-03-29', player_id = int(austinrileyID['key_mlbam'].values[0]))
+    austinrileyStats = statcast_batter('2024-03-31', '2024-03-31', player_id = int(austinrileyID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='austinrileyStats', value=austinrileyStats)
@@ -65,7 +65,7 @@ def lookup_ozuna(ti):
 
     marcellozunaID = playerid_lookup('ozuna', 'marcell')
 
-    marcellozunaStats = statcast_batter('2024-03-29', '2024-03-29', player_id = int(marcellozunaID['key_mlbam'].values[0]))
+    marcellozunaStats = statcast_batter('2024-03-31', '2024-03-31', player_id = int(marcellozunaID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='marcellozunaStats', value=marcellozunaStats)
@@ -79,7 +79,7 @@ def lookup_harris(ti):
 
     michaelharrisID = playerid_lookup('harris', 'michael')
 
-    michaelharrisStats = statcast_batter('2024-03-29', '2024-03-29', player_id = int(michaelharrisID['key_mlbam'].values[0]))
+    michaelharrisStats = statcast_batter('2024-03-31', '2024-03-31', player_id = int(michaelharrisID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='michaelharrisStats', value=michaelharrisStats)
@@ -93,7 +93,7 @@ def lookup_murphy(ti):
 
     seanmurphyID = playerid_lookup('murphy', 'sean')
 
-    seanmurphyStats = statcast_batter('2024-03-29', '2024-03-29', player_id = int(seanmurphyID['key_mlbam'].values[0]))
+    seanmurphyStats = statcast_batter('2024-03-31', '2024-03-31', player_id = int(seanmurphyID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='seanmurphyStats', value=seanmurphyStats)
@@ -107,7 +107,7 @@ def lookup_kelenic(ti):
 
     jarredkelenicID = playerid_lookup('kelenic', 'jarred')
 
-    jarredkelenicStats = statcast_batter('2024-03-29', '2024-03-29', player_id = int(jarredkelenicID['key_mlbam'].values[0]))
+    jarredkelenicStats = statcast_batter('2024-03-31', '2024-03-31', player_id = int(jarredkelenicID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='jarredkelenicStats', value=jarredkelenicStats)
@@ -121,7 +121,7 @@ def lookup_arcia(ti):
 
     orlandoarciaID = playerid_lookup('arcia', 'orlando')
 
-    orlandoarciaStats = statcast_batter('2023-07-25', '2023-07-29', player_id = int(orlandoarciaID['key_mlbam'].values[0]))
+    orlandoarciaStats = statcast_batter('2024-03-31', '2024-03-31', player_id = int(orlandoarciaID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='orlandoarciaStats', value=orlandoarciaStats)
@@ -138,7 +138,7 @@ def combine_players(ti):
     michaelharrisStats = ti.xcom_pull(task_ids='collect_players.lookup_harris', key='michaelharrisStats')
     seanmurphyStats = ti.xcom_pull(task_ids='collect_players.lookup_murphy', key='seanmurphyStats')
     jarredkelenicStats = ti.xcom_pull(task_ids='collect_players.lookup_kelenic', key='jarredkelenicStats')
-    orlandoarciaStats = ti.xcom_pull(task_ids='collect_players.lookup_kelenic', key='orlandoarciaStats')
+    orlandoarciaStats = ti.xcom_pull(task_ids='collect_players.lookup_arcia', key='orlandoarciaStats')
 
     BravesPitchDataToday_df = pd.concat([ronaldacunaStats, ozziealbiesStats, mattolsonStats, austinrileyStats, marcellozunaStats, seanmurphyStats, jarredkelenicStats, orlandoarciaStats, michaelharrisStats], ignore_index=True)
 
@@ -200,8 +200,12 @@ def transform_bravesStats(ti):
     #transform data local
     #BravesPitchDataToday_df = pd.read_csv('../data/BravesPitchData.csv')
 
+    BravesPitchDataOld_df.drop_duplicates()
+    BravesSummarizedDataOld_df.drop_duplicates()
+
     #Create master table for pitch data
     BravesPitchDataNew_df = pd.concat([BravesPitchDataOld_df, BravesPitchDataToday_df], ignore_index=True)
+    
 
     #Summarize Data
     #Only show pitches where an event happened

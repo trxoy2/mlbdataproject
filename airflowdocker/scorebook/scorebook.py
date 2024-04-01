@@ -51,7 +51,7 @@ for player, batterid in zip(players, batterids):
     K_positions = globals()[f"{player}_K_positions"]
     walk_positions = globals()[f"{player}_walk_positions"]
     for inning in range(1, 10):
-        fill_out_scorebook(BravesPitchData_df, t, 8, '2023-07-15', inning, player, batterid, K_positions, walk_positions)
+        fill_out_scorebook(BravesPitchData_df, t, 8, '2024-03-29', inning, player, batterid, K_positions, walk_positions)
 
 
 
