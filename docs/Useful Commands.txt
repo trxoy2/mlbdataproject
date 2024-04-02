@@ -27,3 +27,8 @@ docker build . --tag extending_airflow:latest
 
 fix permissions on aws:
  sudo chown -R $USER:$USER .
+
+git pull on aws:
+git fetch origin master
+git reset --hard FETCH_HEAD
+git clean -df
