@@ -32,3 +32,6 @@ git pull on aws:
 git fetch origin master
 git reset --hard FETCH_HEAD
 git clean -df
+
+Show cron logs in linux:
+cat /var/log/syslog | grep CRON

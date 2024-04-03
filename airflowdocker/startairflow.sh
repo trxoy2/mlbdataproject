@@ -1,2 +1,2 @@
 #!/bin/sh
-docker-compose -f prod-docker-compose.yaml up -d
+docker-compose -f /home/ubuntu/github/mlbdataproject/airflowdocker/prod-docker-compose.yaml up -d
