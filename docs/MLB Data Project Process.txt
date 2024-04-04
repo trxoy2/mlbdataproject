@@ -1,10 +1,8 @@
 ﻿MLB Data Project Process
 
-
+AWS EC2 Docker Airflow setup:
 Set up AWS EC2. Need a t2 medium at least to have enough storage.
 Need to open port 8080.
-
-
 Install docker on ec2 and use docker-compose file for airflow. Need to change CeleryExecutor to LocalExecutor in docker-compose file for airflow to run well on ec2. 
 Create dags, logs, plugins folders for airflow to use.
 Create .env file:
@@ -13,17 +11,26 @@ AIRFLOW_GID=0
 https://www.youtube.com/watch?v=J6azvFhndLg
 https://airflow.apache.org/docs/apache-airflow/stable/docker-compose.yaml
 https://github.com/mikestack15/orangutan-stem/wiki/Activity-1:-Open-Weather-Map-API-Data-Pipeline
+Public IPv4 DNS:8080 to see airflow running in aws
 
+Scheduling EC2 Instance:
+Create Lambda function to start and stop instance
+Can monitor activity with aws cloudtrail event history
+Create cron job to run docker compose file: @reboot bash /home/ubuntu/github/mlbdataproject/airflowdocker/startairflow.sh
+Give permission to run file if needed: chmod +x /home/ubuntu/github/mlbdataproject/airflowdocker/startairflow.sh
+Schedule airflow job
 
+Github setup:
 Get ssh key from ec2 instance and add it to github account so you can pull from github.
 
-
+Local Docker Airflow setup:
 Set up docker and airflow locally as well as a development environment. 
 Don't need to change the docker-compose file at all.
+Any new folders need to be added to volumes for airflow to access them. Example would be data folder.
 
-
+Storage:
 Create S3 bucket on aws. Go to iam and create a user. Security management for aws keys.
-Add keys in airflow connector extra section to upload data to S3.
+Enviornment variables for aws keys then add them in docker-compose.yaml like this: AIRFLOW_CONN_BUCKET: ${AWSCONN}
 
-
-Still need to improve dags and look into connecting to power bi
+Power BI:
+s3bucketgetdata.py script pulls data from s3

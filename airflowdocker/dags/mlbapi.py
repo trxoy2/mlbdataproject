@@ -3,13 +3,13 @@
 def lookup_ozzie(ti):
     from pybaseball import  playerid_lookup
     from pybaseball import  statcast_batter
-    from datetime import date
+    from datetime import datetime, timedelta
 
-    today = date.today().strftime('%Y-%m-%d')
+    yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     ozziealbiesID = playerid_lookup('albies', 'ozzie')
 
-    ozziealbiesStats = statcast_batter('2024-04-01', '2024-04-01', player_id = int(ozziealbiesID['key_mlbam'].values[0]))
+    ozziealbiesStats = statcast_batter(yesterday, yesterday, player_id = int(ozziealbiesID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='ozziealbiesStats', value=ozziealbiesStats)
@@ -17,13 +17,13 @@ def lookup_ozzie(ti):
 def lookup_ronald(ti):
     from pybaseball import  playerid_lookup
     from pybaseball import  statcast_batter
-    from datetime import date
+    from datetime import datetime, timedelta
 
-    today = date.today().strftime('%Y-%m-%d')
+    yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     ronaldacunaID = playerid_lookup('acuña', 'ronald')
 
-    ronaldacunaStats = statcast_batter('2024-04-01', '2024-04-01', player_id = int(ronaldacunaID['key_mlbam'].values[0]))
+    ronaldacunaStats = statcast_batter(yesterday, yesterday, player_id = int(ronaldacunaID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='ronaldacunaStats', value=ronaldacunaStats)
@@ -31,13 +31,13 @@ def lookup_ronald(ti):
 def lookup_olson(ti):
     from pybaseball import  playerid_lookup
     from pybaseball import  statcast_batter
-    from datetime import date
+    from datetime import datetime, timedelta
 
-    today = date.today().strftime('%Y-%m-%d')
+    yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     mattolsonID = playerid_lookup('olson', 'matt')
 
-    mattolsonStats = statcast_batter('2024-04-01', '2024-04-01', player_id = int(mattolsonID['key_mlbam'].values[0]))
+    mattolsonStats = statcast_batter(yesterday, yesterday, player_id = int(mattolsonID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='mattolsonStats', value=mattolsonStats)
@@ -45,13 +45,13 @@ def lookup_olson(ti):
 def lookup_riley(ti):
     from pybaseball import  playerid_lookup
     from pybaseball import  statcast_batter
-    from datetime import date
+    from datetime import datetime, timedelta
 
-    today = date.today().strftime('%Y-%m-%d')
+    yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     austinrileyID = playerid_lookup('riley', 'austin')
 
-    austinrileyStats = statcast_batter('2024-04-01', '2024-04-01', player_id = int(austinrileyID['key_mlbam'].values[0]))
+    austinrileyStats = statcast_batter(yesterday, yesterday, player_id = int(austinrileyID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='austinrileyStats', value=austinrileyStats)
@@ -59,13 +59,13 @@ def lookup_riley(ti):
 def lookup_ozuna(ti):
     from pybaseball import  playerid_lookup
     from pybaseball import  statcast_batter
-    from datetime import date
+    from datetime import datetime, timedelta
 
-    today = date.today().strftime('%Y-%m-%d')
+    yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     marcellozunaID = playerid_lookup('ozuna', 'marcell')
 
-    marcellozunaStats = statcast_batter('2024-04-01', '2024-04-01', player_id = int(marcellozunaID['key_mlbam'].values[0]))
+    marcellozunaStats = statcast_batter(yesterday, yesterday, player_id = int(marcellozunaID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='marcellozunaStats', value=marcellozunaStats)
@@ -73,13 +73,13 @@ def lookup_ozuna(ti):
 def lookup_harris(ti):
     from pybaseball import  playerid_lookup
     from pybaseball import  statcast_batter
-    from datetime import date
+    from datetime import datetime, timedelta
 
-    today = date.today().strftime('%Y-%m-%d')
+    yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     michaelharrisID = playerid_lookup('harris', 'michael')
 
-    michaelharrisStats = statcast_batter('2024-04-01', '2024-04-01', player_id = int(michaelharrisID['key_mlbam'].values[0]))
+    michaelharrisStats = statcast_batter(yesterday, yesterday, player_id = int(michaelharrisID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='michaelharrisStats', value=michaelharrisStats)
@@ -87,13 +87,13 @@ def lookup_harris(ti):
 def lookup_murphy(ti):
     from pybaseball import  playerid_lookup
     from pybaseball import  statcast_batter
-    from datetime import date
+    from datetime import datetime, timedelta
 
-    today = date.today().strftime('%Y-%m-%d')
+    yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     seanmurphyID = playerid_lookup('murphy', 'sean')
 
-    seanmurphyStats = statcast_batter('2024-04-01', '2024-04-01', player_id = int(seanmurphyID['key_mlbam'].values[0]))
+    seanmurphyStats = statcast_batter(yesterday, yesterday, player_id = int(seanmurphyID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='seanmurphyStats', value=seanmurphyStats)
@@ -101,13 +101,13 @@ def lookup_murphy(ti):
 def lookup_kelenic(ti):
     from pybaseball import  playerid_lookup
     from pybaseball import  statcast_batter
-    from datetime import date
+    from datetime import datetime, timedelta
 
-    today = date.today().strftime('%Y-%m-%d')
+    yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     jarredkelenicID = playerid_lookup('kelenic', 'jarred')
 
-    jarredkelenicStats = statcast_batter('2024-04-01', '2024-04-01', player_id = int(jarredkelenicID['key_mlbam'].values[0]))
+    jarredkelenicStats = statcast_batter(yesterday, yesterday, player_id = int(jarredkelenicID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='jarredkelenicStats', value=jarredkelenicStats)
@@ -115,13 +115,13 @@ def lookup_kelenic(ti):
 def lookup_arcia(ti):
     from pybaseball import  playerid_lookup
     from pybaseball import  statcast_batter
-    from datetime import date
+    from datetime import datetime, timedelta
 
-    today = date.today().strftime('%Y-%m-%d')
+    yesterday = (datetime.today() - timedelta(days=1)).strftime('%Y-%m-%d')
 
     orlandoarciaID = playerid_lookup('arcia', 'orlando')
 
-    orlandoarciaStats = statcast_batter('2024-04-01', '2024-04-01', player_id = int(orlandoarciaID['key_mlbam'].values[0]))
+    orlandoarciaStats = statcast_batter(yesterday, yesterday, player_id = int(orlandoarciaID['key_mlbam'].values[0]))
 
     #return bravesStats
     ti.xcom_push(key='orlandoarciaStats', value=orlandoarciaStats)

@@ -35,3 +35,5 @@ git clean -df
 
 Show cron logs in linux:
 cat /var/log/syslog | grep CRON
+Give cron permission to use file:
+chmod +x /home/ubuntu/github/mlbdataproject/airflowdocker/startairflow.sh
